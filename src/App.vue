@@ -18,7 +18,7 @@
         <Selection title="Title" type="text" placeholder="Back to the Future"/>
         <Selection title="Year" type="text" placeholder="1985" :removeNANs="removeNANs"/>
         <Selection title="Type" type="dropdown" options="options"/> 
-        <Selection title="Notes" type="text" placeholder="Best movie ever"/> 
+        <!-- <Selection title="Notes" type="text" placeholder="Best movie ever"/>  -->
       </div>
   
       <div v-if="!validSubmission && !showResponse">
