@@ -30,6 +30,12 @@ app.post('/server', (req, res) => {
     body = `Hi Jon,\n\n${userName} has requested:\n\n${body}`
 
     console.log(body)
+    
+    let toEmail = 'newyorkjonsola@gmail.com'
+
+    if (userName === 'is_test') {
+        toEmail = 'stephenagiordano@gmail.com'
+    }
 
     const transporter = nodemailer.createTransport({
         host: 'smtp.mail.yahoo.com',
@@ -45,14 +51,17 @@ app.post('/server', (req, res) => {
     })
     const mailOptions = {
         from: 'plex.requester@yahoo.com',
-        to: 'stephenagiordano@gmail.com',
-        subject: 'Request!',
+        to: toEmail,
+        subject: 'New Plex Request!',
         text: body
     }
-
+    
+    let cc = 'stephenagiordano+plex@gmail.com'
     if (userEmail) {
-        mailOptions.cc = userEmail
+        cc = `${cc}, ${userEmail}`
     }
+
+    mailOptions.cc = cc
 
     transporter.sendMail(mailOptions, function(error, response) {
         if (error) {
