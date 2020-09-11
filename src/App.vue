@@ -15,7 +15,7 @@
       </nav>
 
       <div class="container">
-        <Selection title="Title" type="text" placeholder="Back to the Future" slug="title"/>
+        <Selection title="Title (Required)" type="text" placeholder="Back to the Future" slug="title"/>
         <Selection title="Year" type="text" placeholder="1985" :removeNANs="removeNANs" slug="year"/>
         <Selection title="Type" type="dropdown" options="options" slug="type"/> 
         <!-- <Selection title="Notes" type="text" placeholder="Best movie ever"/>  -->
