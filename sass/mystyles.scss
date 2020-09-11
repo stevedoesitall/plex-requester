@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+// Set your brand colors
+$purple: #5a32a3;
+$blue: #32a3a3;
+$brown: #757763;
+$pink: #a86e9d;
+$grey: #acacac;
+$green: #6ea879;
+$beige-light: #d0d1cd;
+$beige-lighter: #eff0eb;
+
+// Update Bulma's global variables
+$family-sans-serif: "Roboto", sans-serif;
+$family-primary: "Roboto-Slab", serif;
+$grey-dark: $brown;
+$grey-light: $beige-light;
+$primary: $purple;
+$primary-inverted: $green;
+$danger: $pink;
+$info: $grey;
+$warning: $blue;
+$link: $purple;
+$success: $green;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+$danger: $pink;
+$box-shadow: 0 2px 3px #a3a3a3;
+
+// Update some of Bulma's component variables
+$body-background-color: $beige-lighter;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+$spacing-values: ("small": 2em, "medium": 15em, "large": 30em);
+
+// Import only what you need from Bulma
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/elements/button.sass";
+@import "../node_modules/bulma/sass/elements/box.sass";
+@import "../node_modules/bulma/sass/elements/container.sass";
+@import "../node_modules/bulma/sass/elements/progress.sass";
+@import "../node_modules/bulma/sass/elements/title.sass";
+@import "../node_modules/bulma/sass/elements/notification.sass";
+@import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/components/navbar.sass";
+@import "../node_modules/bulma/sass/components/message.sass";
+@import "../node_modules/bulma/sass/layout/hero.sass";
+@import "../node_modules/bulma/sass/layout/section.sass";
