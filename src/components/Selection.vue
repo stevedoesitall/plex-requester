@@ -4,7 +4,7 @@
             <div v-if="type === 'dropdown'">
                 <label class="label">{{title}}</label>
                 <div class="dropdown select is-fullwidth selection">
-                <select v-bind:id="title.toLowerCase() + '-input'" v-bind:type="type">
+                <select v-bind:id="slug + '-input'" v-bind:type="type">
                     <option v-for="option in options" :key="option.toLowerCase()">
                         {{option}}
                     </option>
@@ -13,15 +13,15 @@
             </div>
 
             <div v-else-if="type === 'text'">
-                <label class="label">{{title === 'Title'? title + ' (Required)' : title}}</label>
-                <input class="input selection mr-6" v-bind:placeholder="placeholder" v-bind:id="title.toLowerCase() + '-input'" v-bind:type="type" v-on:keyup="removeNANs" v-on:input="removeWarningMethod(type)"/>
+                <label class="label">{{title}}</label>
+                <input class="input selection mr-6" v-bind:placeholder="placeholder" v-bind:id="slug + '-input'" v-bind:type="type" v-on:keyup="removeNANs"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { removeWarning } from '../utils/warnings'
+// import { removeWarning } from '../utils/warnings'
 
 export default {
     name: 'Item',
@@ -51,16 +51,20 @@ export default {
             type: String,
             required: false
         },
+        slug: {
+            type: String,
+            required: false
+        },
         removeNANs: {
             type: Function,
             required: false
         }
     },
-    methods: {
-        removeWarningMethod: function(type) {
-            removeWarning(type)
-        }
-    }
+    // methods: {
+    //     removeWarningMethod: function(type) {
+    //         removeWarning(type)
+    //     }
+    // }
 }
 </script>
 

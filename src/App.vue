@@ -4,8 +4,8 @@
     
     <section class="section">
       <div class="container">
-        <About title="Your Name" type="text" placeholder="Marty McFly"/> 
-        <About title="Email" type="text" placeholder="mmcfly@hillvalleyhs.edu"/> 
+        <About title="Your Name (Required)" type="text" placeholder="Marty McFly" slug="name"/> 
+        <About title="Email (Recommended)" type="text" placeholder="mmcfly@hillvalleyhs.edu" slug="email"/> 
       </div>
 
       <nav class="level">
@@ -15,9 +15,9 @@
       </nav>
 
       <div class="container">
-        <Selection title="Title" type="text" placeholder="Back to the Future"/>
-        <Selection title="Year" type="text" placeholder="1985" :removeNANs="removeNANs"/>
-        <Selection title="Type" type="dropdown" options="options"/> 
+        <Selection title="Title" type="text" placeholder="Back to the Future" slug="title"/>
+        <Selection title="Year" type="text" placeholder="1985" :removeNANs="removeNANs" slug="year"/>
+        <Selection title="Type" type="dropdown" options="options" slug="type"/> 
         <!-- <Selection title="Notes" type="text" placeholder="Best movie ever"/>  -->
       </div>
   
@@ -45,10 +45,6 @@
       <div v-for="movie in itemsList" :key="movie.id">
         <Item v-bind:item="movie" :removeItem="removeItem"/>
       </div>
-
-      <!-- <div v-if="itemsList.length < 1 && !showResponse">
-        <p class="subtitle is-5 is-spaced mt-4 has-text-centered">Request list empty</p>
-      </div> -->
 
       <div v-if="itemsList.length > 0 && !showProgressBar" class="has-text-centered">
         <button v-on:click="sendData" class="button is-primary is-family-sans-serif is-large mt-4">Submit</button>
@@ -117,16 +113,15 @@ export default {
         this.message = 'Please fix all issues.'
         this.className = 'is-danger'
         this.msgType = 'Error'
-        addWarning('title')
-        addWarning('year')
+        addWarning(['title', 'year'])
         return true
       } else if (!titleInput) {
         this.validSubmission = false
         this.message = 'Please enter a title.'
         this.className = 'is-danger'
         this.msgType = 'Error'
-        addWarning('title')
-        removeWarning('year')
+        addWarning(['title'])
+        removeWarning(['year'])
         return true
       } else if (
         yearInput && 
@@ -136,12 +131,12 @@ export default {
         this.message = 'Please enter a valid year.'
         this.className = 'is-danger'
         this.msgType = 'Error'
-        addWarning('year')
-        removeWarning('title')
+        addWarning(['year'])
+        removeWarning(['title'])
         return true
       }
 
-      removeWarning('all')
+      removeWarning()
 
       id++
       this.validSubmission = true
@@ -168,18 +163,19 @@ export default {
     sendData: async function() {
       const userData = {}
       const userEmail = document.querySelector('#email-input').value
-      const userName = document.querySelector('#your-name-input').value
-      
+      const userName = document.querySelector('#name-input').value
+      removeWarning(['title', 'year'])
+
       if (!userName) {
         this.showResponse = true
         this.message = 'Name is required.'
         this.className = 'is-danger'
         this.msgType = 'Error'
-        addWarning('name')
+        addWarning(['name'])
         return true
       }
 
-      removeWarning('name')
+      removeWarning(['name'])
        
       userData.name = capitalize(userName)
 
@@ -189,7 +185,7 @@ export default {
           this.message = 'Invalid email address.'
           this.className = 'is-danger'
           this.msgType = 'Error'
-          addWarning('email')
+          addWarning(['email'])
           return true
         }
         userData.email = userEmail.toLowerCase()
@@ -197,7 +193,7 @@ export default {
         userData.email = null
       }
 
-      removeWarning('all')
+      removeWarning()
 
       this.showProgressBar = true
 
@@ -211,7 +207,7 @@ export default {
       const data = await response.json()
       this.showProgressBar = false
       console.log(data)
-      removeWarning('all')
+      removeWarning()
 
       if (data.status === 'error') {
         this.showResponse = true
