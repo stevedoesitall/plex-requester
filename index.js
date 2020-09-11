@@ -33,7 +33,7 @@ app.post('/server', (req, res) => {
     
     let toEmail = 'newyorkjonsola@gmail.com'
 
-    if (userName === 'is_test') {
+    if (userName.toLowerCase() === 'test') {
         toEmail = 'stephenagiordano@gmail.com'
     }
 
