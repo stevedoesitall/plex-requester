@@ -11,7 +11,8 @@
     "css-watch": "npm run css-build -- --watch",
     "start": "node index.js",
     "build": "npm run css-build && vue-cli-service build",
-    "build-start": "start && build"
+    "build-start": "start && build",
+    "git": "git status && git add . && git commit -m 'Commit' && git push origin master"
   },
   "dependencies": {
     "core-js": "^3.6.5",

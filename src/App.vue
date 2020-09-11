@@ -122,7 +122,7 @@ export default {
         return true
       } else if (!titleInput) {
         this.validSubmission = false
-        this.message = 'Please enter a movie title.'
+        this.message = 'Please enter a title.'
         this.className = 'is-danger'
         this.msgType = 'Error'
         addWarning('title')
@@ -197,7 +197,7 @@ export default {
         userData.email = null
       }
 
-      removeWarning('email')
+      removeWarning('all')
 
       this.showProgressBar = true
 
