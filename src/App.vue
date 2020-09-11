@@ -75,6 +75,7 @@ import Selection from './components/Selection.vue'
 //Utility functions
 import { addWarning, removeWarning } from './utils/warnings'
 import capitalize from './utils/capitalize'
+import validate from './utils/validate'
 
 const LIMIT = 5
 let id = 0
@@ -183,10 +184,20 @@ export default {
       userData.name = capitalize(userName)
 
       if (userEmail) {
+        if (!validate(userEmail)) {
+          this.showResponse = true
+          this.message = 'Invalid email address.'
+          this.className = 'is-danger'
+          this.msgType = 'Error'
+          addWarning('email')
+          return true
+        }
         userData.email = userEmail.toLowerCase()
       } else {
         userData.email = null
       }
+
+      removeWarning('email')
 
       this.showProgressBar = true
 
